@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "starting gitmir run at time: $(date +"%T")" | tee -a /gitmir/gitmirrun.log
+echo "starting gitmir run at time: $(date +"%T")" | tee -a /root/gitmirrun.log
 gitmirVersion="gitmir-0.10"
 echo $gitmirVersion
 ######## Save initial user inputs in a variable
@@ -19,7 +19,7 @@ then
 fi
 echo "GITMIRROOT=$GITMIRROOT"
 
-GITHUBOAUTHTOKEN=$(cat /gitmir/.token)
+GITHUBOAUTHTOKEN=$(cat /root/.token)
 echo "GITHUBOAUTHTOKEN=$GITHUBOAUTHTOKEN"
 
 ######## Declare global variables
@@ -36,26 +36,26 @@ orgApiUrl=""
 repoApiUrl=""
 
 ######## Initialize functions
-echo "initializing functions at time: $(date +"%T")" | tee -a /gitmir/gitmirrun.log
+echo "initializing functions at time: $(date +"%T")" | tee -a /root/gitmirrun.log
 function flagHandler
 # handles flags: calls helpMenu when -h flag passed; returns error message and exits if erroneous flag passed
 {
-    echo "entering flagHandler function at time: $(date +"%T")" | tee -a /gitmir/gitmirrun.log
+    echo "entering flagHandler function at time: $(date +"%T")" | tee -a /root/gitmirrun.log
     local OPTIND
     while getopts ":hvf:" opt; do
     case "${opt}" in
         h)
         echo "flagHandler case for -h"
-        echo "calling helpMenu at time: $(date +"%T")" | tee -a /gitmir/gitmirrun.log
+        echo "calling helpMenu at time: $(date +"%T")" | tee -a /root/gitmirrun.log
         helpMenu
         exit 0
         ;;
         f)
         echo "flagHandler case for -f"
-        echo "calling filehandler $OPTARG at time: $(date +"%T")" | tee -a /gitmir/gitmirrun.log
+        echo "calling filehandler $OPTARG at time: $(date +"%T")" | tee -a /root/gitmirrun.log
         fileHandler $OPTARG
         wait
-        echo "gitmir has finished processing each of the specified records in the $OPTARG file at time: $(date +"%T")" | tee -a /gitmir/gitmirrun.log
+        echo "gitmir has finished processing each of the specified records in the $OPTARG file at time: $(date +"%T")" | tee -a /root/gitmirrun.log
         exit 0
         ;;
         v)
@@ -95,8 +95,8 @@ function isOrgInitialized
 #check if gitmir has already been initialized for the provided org name
 {
     # The following if statement sets the orgInitialized value to -1 if org directory present or 0 if org directory not present, as determined by whether a value was returned in the above find commands
-    echo "starting isOrgInitialized run at time: $(date +"%T")" | tee -a /gitmir/gitmirrun.log
-    echo "input values are: $@" | tee -a /gitmir/gitmirrun.log
+    echo "starting isOrgInitialized run at time: $(date +"%T")" | tee -a /root/gitmirrun.log
+    echo "input values are: $@" | tee -a /root/gitmirrun.log
     if [ -d "$GITMIRROOT/$orgLowerCase" ]
     then
         echo "gitmir has already initialized the org $orgLowerCase"
@@ -114,8 +114,8 @@ function isOrgInitialized
 function initGitmir
 # Usage: initGitmir <required_org_name> <optional_repo_name>
 {
-    echo "starting initGitmir run at time: $(date +"%T")" | tee -a /gitmir/gitmirrun.log
-    echo "input values are: $@" | tee -a /gitmir/gitmirrun.log  
+    echo "starting initGitmir run at time: $(date +"%T")" | tee -a /root/gitmirrun.log
+    echo "input values are: $@" | tee -a /root/gitmirrun.log  
     # select case to identify proper workflow for the amount of parameters
     # if $numParametersEntered=1 the only value provided should be the org name
     # if $numParametersEntered=2 both an org name and repo should be the values provided
@@ -175,8 +175,8 @@ function updateGitmir
 ## updateGitmir updates does a fetch and merge to update orgs that have already been initialized. 
 ## updateGitmir handles all cases where the org has been initialized. In cases where an org has already been initialized but a desired repo has not been initialized, updateGitmir will 
 {
-    echo "starting updateGitmir run at time: $(date +"%T")" | tee -a /gitmir/gitmirrun.log
-    echo "input values are: $@" | tee -a /gitmir/gitmirrun.log
+    echo "starting updateGitmir run at time: $(date +"%T")" | tee -a /root/gitmirrun.log
+    echo "input values are: $@" | tee -a /root/gitmirrun.log
     # select case to identify proper workflow for the amount of parameters
     # if $numParametersEntered=1 the only value provided should be the org name
     # if $numParametersEntered=2 both an org name and repo should be the values provided
@@ -206,9 +206,9 @@ function updateGitmir
                 cd $GITMIRROOT/$orgLowerCase/$repo.git
                 echo "pwd: $(pwd)"
                 echo "Begining git remote update & fetch --all for $orgLowerCase/$repo" 
-                git remote update 2>$1 | tee -a /gitmir/gitmirrun.log
-                git fetch --all 2>$1 | tee -a /gitmir/gitmirrun.log
-                git update-server-info 2>$1 | tee -a /gitmir/gitmirrun.log
+                git remote update 2>$1 | tee -a /root/gitmirrun.log
+                git fetch --all 2>$1 | tee -a /root/gitmirrun.log
+                git update-server-info 2>$1 | tee -a /root/gitmirrun.log
             echo "Completed git fetch --all $orgLowerCase/$repo at time: $(date +"%T")" 
             done
             echo "Completed Update Process for all repos and branches in the $orgLowerCase org at time: $(date +"%T")" 
@@ -218,9 +218,9 @@ function updateGitmir
             echo "you passed 2 parameters to updateGitmir"
             cd $GITMIRROOT/$orgLowerCase/$repoLowerCase.git
             echo "Begining git remote update & fetch --all for $orgLowerCase/$repo" 
-            git remote update 2>$1 | tee -a /gitmir/gitmirrun.log
-            git fetch --all 2>$1 | tee -a /gitmir/gitmirrun.log
-            git update-server-info 2>$1 | tee -a /gitmir/gitmirrun.log
+            git remote update 2>$1 | tee -a /root/gitmirrun.log
+            git fetch --all 2>$1 | tee -a /root/gitmirrun.log
+            git update-server-info 2>$1 | tee -a /root/gitmirrun.log
             echo "Completed git fetch --all $orgLowerCase/$repo at time: $(date +"%T")" 
             return
             ;;
@@ -232,8 +232,8 @@ function orgExists
 # orgExists calls github api to verify org (or repo and branch if provided) exists, if exists continue, else echo error string to stdout and exit 1
 # usage: orgExists <github org name>
 {
-    echo "starting orgExists run at time: $(date +"%T")" | tee -a /gitmir/gitmirrun.log
-    echo "input values are: $@" | tee -a /gitmir/gitmirrun.log
+    echo "starting orgExists run at time: $(date +"%T")" | tee -a /root/gitmirrun.log
+    echo "input values are: $@" | tee -a /root/gitmirrun.log
 
     ## Use $orgInput to query the github api which is not case sensitive query, but returns the exact case used by github, which is important for file system operations.
     # If the Org Does Not exist, null value will be returned
@@ -301,12 +301,12 @@ function fileHandler
 # Usage: fileHandler <filename.json> 
 {
     
-    echo "starting fileHandler run at time: $(date +"%T")" | tee -a /gitmir/gitmirrun.log
-    echo "input values are: $@" | tee -a /gitmir/gitmirrun.log
-    echo "cat /gitmir/feederFile.json"
+    echo "starting fileHandler run at time: $(date +"%T")" | tee -a /root/gitmirrun.log
+    echo "input values are: $@" | tee -a /root/gitmirrun.log
+    echo "cat /root/feederFile.json"
     for line in $(cat $1 | jq -c '.[]')
     do
-        echo "entering the fileHandler do loop for line: $line" | tee -a /gitmir/gitmirrun.log
+        echo "entering the fileHandler do loop for line: $line" | tee -a /root/gitmirrun.log
         echo $line
         org=$(echo $line | jq -r '.org')
         org=$(echo "$org" | tr '[:upper:]' '[:lower:]')

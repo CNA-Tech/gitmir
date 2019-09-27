@@ -1,5 +1,5 @@
 #!/bin/bash
 export GITMIRROOT
-gitmir -f /gitmir/feederFile.json | tee /gitmir/gitmirlog
+gitmir -f /root/feederFile.json | tee /root/gitmirlog
 wait
 httpd-foreground
