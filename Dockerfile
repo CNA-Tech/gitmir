@@ -16,8 +16,8 @@ RUN \
   rm -rf /var/lib/apt/lists/*
 
 # Add files.
-ADD root/.gitmir0.10.sh /usr/local/bin/gitmir
-ADD root/.gitmir0.10.sh /gitmir/gitmir.sh
+ADD root/.gitmir0.11.sh /usr/local/bin/gitmir
+ADD root/.gitmir0.11.sh /gitmir/gitmir.sh
 ADD root/.feederFile.json /gitmir/feederFile.json
 ADD root/.gitmirhalist.json /gitmir/gitmirhalist.json
 ADD root/.start.sh /gitmir/start.sh
