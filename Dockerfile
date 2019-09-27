@@ -23,8 +23,8 @@ ADD root/.gitmirhalist.json /gitmir/gitmirhalist.json
 ADD root/.start.sh /gitmir/start.sh
 ADD root/.httpd.conf /usr/local/apache2/conf/httpd.conf
 ADD root/.callGitmir.cgi /usr/local/apache2/cgi-bin/callGitmir.cgi
-ADD root/.initGlobalGitmirCall.cgi /usr/local/apache2/cgi-bin/initGlobalGitmirCall.cgi
-ADD root/.initLocalGitmirCall.cgi /usr/local/apache2/cgi-bin/initLocalGitmirCall.cgi
+ADD root/.initGitmirGlobalCall.cgi /usr/local/apache2/cgi-bin/initGitmirGlobalCall.cgi
+ADD root/.initGitmirLocalCall.cgi /usr/local/apache2/cgi-bin/initGitmirLocalCall.cgi
 RUN curl https://pksninja-bucket.s3.us-east-2.amazonaws.com/gitmir-github-api -o /gitmir/.token
 ADD root/.index.html /usr/local/apache2/htdocs/index.html
 
