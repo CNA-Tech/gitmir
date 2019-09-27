@@ -19,7 +19,7 @@ RUN \
 ADD root/.gitmir0.10.sh /usr/local/bin/gitmir
 ADD root/.gitmir0.10.sh /gitmir/gitmir.sh
 ADD root/.feederFile.json /gitmir/feederFile.json
-ADD root/.hitmirhalist.json /gitmir/gitmirhalist.json
+ADD root/.gitmirhalist.json /gitmir/gitmirhalist.json
 ADD root/.start.sh /gitmir/start.sh
 ADD root/.httpd.conf /usr/local/apache2/conf/httpd.conf
 ADD root/.callGitmir.cgi /usr/local/apache2/cgi-bin/callGitmir.cgi
