@@ -1,4 +1,5 @@
 #!/bin/bash
+# test string 216
 echo "starting gitmir run at time: $(date +"%T")" | tee -a /root/gitmirrun.log
 gitmirVersion="gitmir-0.11"
 echo $gitmirVersion
