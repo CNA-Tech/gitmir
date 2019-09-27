@@ -32,7 +32,6 @@ ADD root/.index.html /usr/local/apache2/htdocs/index.html
 
 #Set gitmir as executable
 RUN chmod 755 /usr/local/bin/gitmir
-RUN chmod 755 /gitmir/gitmir.sh
 RUN chmod 755 /gitmir/start.sh
 RUN chmod 755 /usr/local/bin/initGitmirGlobalCall.sh
 RUN chmod 755 /usr/local/bin/initGitmirLocalCall.sh
