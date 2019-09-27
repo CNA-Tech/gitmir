@@ -327,9 +327,9 @@ if [ $# -eq 0 ]
 # If no parameters entered
 then
     # echo error message string, call helpMenu and exit 1
-    echo "No User Input Values Detected, please see the following help menu for instructions on proper gitmir command usage"
-    helpMenu
-    exit 1
+    echo "No User Input Values Detected, running the default command 'gitmir -f /gitmir/feederfile.json'. For help or instructions, please use 'gitmir -h'"
+    gitmir -f /gitmir/feederFile.json
+    exit 0
 elif [ $# -ge 3 ]
 # if 3 or more parameters entered
 then 
