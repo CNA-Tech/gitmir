@@ -17,7 +17,8 @@ RUN \
 
 # Add files.
 ADD root/.gitmir0.11.sh /usr/local/bin/gitmir
-ADD root/.gitmir0.11.sh /gitmir/gitmir.sh
+ADD root/.initGitmirGlobalCall.sh /usr/local/bin/initGitmirGlobalCall
+ADD root/.initGitmirLocalCall.sh /usr/local/bin/initGitmirLocalCall
 ADD root/.feederFile.json /gitmir/feederFile.json
 ADD root/.gitmirhalist.json /gitmir/gitmirhalist.json
 ADD root/.start.sh /gitmir/start.sh
@@ -25,8 +26,7 @@ ADD root/.httpd.conf /usr/local/apache2/conf/httpd.conf
 ADD root/.callGitmir.cgi /usr/local/apache2/cgi-bin/callGitmir.cgi
 ADD root/.initGitmirGlobalCall.cgi /usr/local/apache2/cgi-bin/initGitmirGlobalCall.cgi
 ADD root/.initGitmirLocalCall.cgi /usr/local/apache2/cgi-bin/initGitmirLocalCall.cgi
-ADD root/.initGitmirGlobalCall.sh /gitmir/initGitmirGlobalCall.sh
-ADD root/.initGitmirLocalCall.sh /gitmir/initGitmirLocalCall.sh
+
 RUN curl https://pksninja-bucket.s3.us-east-2.amazonaws.com/gitmir-github-api -o /gitmir/.token
 ADD root/.index.html /usr/local/apache2/htdocs/index.html
 
@@ -34,8 +34,8 @@ ADD root/.index.html /usr/local/apache2/htdocs/index.html
 RUN chmod 755 /usr/local/bin/gitmir
 RUN chmod 755 /gitmir/gitmir.sh
 RUN chmod 755 /gitmir/start.sh
-RUN chmod 755 /gitmir/initGitmirGlobalCall.sh
-RUN chmod 755 /gitmir/initGitmirLocalCall.sh
+RUN chmod 755 /usr/local/bin/initGitmirGlobalCall.sh
+RUN chmod 755 /usr/local/bin/initGitmirLocalCall.sh
 RUN chmod 755 /usr/local/apache2/cgi-bin/callGitmir.cgi
 RUN chmod -R 755 /usr/local/apache2/htdocs
 RUN chmod -R 755 /gitmir
