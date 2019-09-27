@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "starting gitmir run at time: $(date +"%T")" | tee -a /root/gitmirrun.log
-gitmirVersion="gitmir-0.10"
+gitmirVersion="gitmir-0.11"
 echo $gitmirVersion
 ######## Save initial user inputs in a variable
 userInputs="$@"
