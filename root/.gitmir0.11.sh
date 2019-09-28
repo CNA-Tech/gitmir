@@ -20,7 +20,7 @@ then
 fi
 echo "GITMIRROOT=$GITMIRROOT"
 GITHUBOAUTHTOKEN=$(cat /gitmir/.token)
-echo "GITHUBOAUTHTOKEN=$GITHUBOAUTHTOKEN"
+#echo "GITHUBOAUTHTOKEN=$GITHUBOAUTHTOKEN"
 
 ######## Declare global variables
 orgInput=""
@@ -240,7 +240,7 @@ function orgExists
     # If $orgInput value provided, get exact case & lower case values
     orgApiUrl="https://api.github.com/orgs/$orgInput"
     echo "$orgApiUrl"
-    echo "curl command: curl -u $GITHUBOAUTHTOKEN $orgApiUrl | jq -r '.login'"
+    echo "curl command: curl -u GITHUBOAUTHTOKEN $orgApiUrl | jq -r '.login'"
     orgGithubCase=$(curl -u $GITHUBOAUTHTOKEN $orgApiUrl | jq -r '.login')
     echo "orgGithubCase=$orgGithubCase"
     orgLowerCase=$(echo "$orgGithubCase" | tr '[:upper:]' '[:lower:]')
