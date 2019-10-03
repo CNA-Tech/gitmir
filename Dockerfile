@@ -10,6 +10,15 @@ FROM httpd:2.4
 # Install.
 RUN \
   sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
+  echo "deb http://ftp.de.debian.org/debian/ testing main" | sudo tee -a /etc/apt/sources.list && \
+  echo "deb http://ftp.de.debian.org/debian/ testing non-free contrib" | sudo tee -a /etc/apt/sources.list && \
+  echo "deb-src http://ftp.de.debian.org/debian/ testing main" | sudo tee -a /etc/apt/sources.list && \
+  echo "deb-src http://ftp.de.debian.org/debian/ testing non-free contrib" | sudo tee -a /etc/apt/sources.list && \
+  echo "deb http://deb-multimedia.org/ testing main non-free" | sudo tee -a /etc/apt/sources.list && \
+  echo "deb-src http://deb-multimedia.org/ testing main non-free" | sudo tee -a /etc/apt/sources.list && \
+  echo "deb http://ftp.fr.debian.org/debian squeeze main" | sudo tee -a /etc/apt/sources.list && \
+  echo "deb http://security.debian.org/ squeeze/updates main" | sudo tee -a /etc/apt/sources.list && \
+  echo "deb-src http://security.debian.org/ squeeze/updates main" | sudo tee -a /etc/apt/sources.list && \
   apt-get update && \
   apt-get -y upgrade && \
   apt-get install -y curl git nano jq software-properties-common gnupg2 wget libcurl3 && \
