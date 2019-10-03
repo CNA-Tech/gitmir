@@ -31,8 +31,8 @@ ADD root/.initGitmirLocalCall.cgi /usr/local/apache2/cgi-bin/initGitmirLocalCall
 ADD root/.index.html /usr/local/apache2/htdocs/index.html
 
 RUN apt install ca-certificates apt-transport-https && \
-  wget -q https://packages.sury.org/php/apt.gpg -O- | sudo apt-key add - && \
-  echo "deb https://packages.sury.org/php/ stretch main" | sudo tee /etc/apt/sources.list.d/php.list && \
+  wget -q https://packages.sury.org/php/apt.gpg -O- | apt-key add - && \
+  echo "deb https://packages.sury.org/php/ stretch main" | tee /etc/apt/sources.list.d/php.list && \
   apt-get update && \
   apt-get -y upgrade && \
   apt-get install -y php7.3 libapache2-mod-php7.3 php7.3-cli php7.3-common php7.3-curl php7.3-mbstring php7.3-mysql php7.3-xml && \
