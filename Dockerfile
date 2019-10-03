@@ -17,6 +17,7 @@ RUN \
 
 # Add files.
 ADD root/.gitmir0.11.sh /usr/local/bin/gitmir
+ADD root/.webhookHandler.php /usr/local/apache2/cgi-bin/webhookHandler.php
 ADD root/.initGitmirGlobalCall.sh /usr/local/bin/initGitmirGlobalCall
 ADD root/.initGitmirLocalCall.sh /usr/local/bin/initGitmirLocalCall
 ADD root/.feederFile.json /gitmir/feederFile.json
@@ -36,6 +37,7 @@ RUN chmod 755 /gitmir/start.sh
 RUN chmod 755 /usr/local/bin/initGitmirGlobalCall
 RUN chmod 755 /usr/local/bin/initGitmirLocalCall
 RUN chmod 755 /usr/local/apache2/cgi-bin/callGitmir.cgi
+RUN chmod 755 /usr/local/apache2/cgi-bin/webhookHandler.php
 RUN chmod -R 755 /usr/local/apache2/htdocs
 RUN chmod -R 755 /gitmir
 RUN chmod -R 755 /usr/local/apache2/cgi-bin
