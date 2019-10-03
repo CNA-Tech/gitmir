@@ -10,15 +10,15 @@ FROM httpd:2.4
 # Install.
 RUN \
   sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
-  echo "deb http://ftp.de.debian.org/debian/ testing main" | sudo tee -a /etc/apt/sources.list && \
-  echo "deb http://ftp.de.debian.org/debian/ testing non-free contrib" | sudo tee -a /etc/apt/sources.list && \
-  echo "deb-src http://ftp.de.debian.org/debian/ testing main" | sudo tee -a /etc/apt/sources.list && \
-  echo "deb-src http://ftp.de.debian.org/debian/ testing non-free contrib" | sudo tee -a /etc/apt/sources.list && \
-  echo "deb http://deb-multimedia.org/ testing main non-free" | sudo tee -a /etc/apt/sources.list && \
-  echo "deb-src http://deb-multimedia.org/ testing main non-free" | sudo tee -a /etc/apt/sources.list && \
-  echo "deb http://ftp.fr.debian.org/debian squeeze main" | sudo tee -a /etc/apt/sources.list && \
-  echo "deb http://security.debian.org/ squeeze/updates main" | sudo tee -a /etc/apt/sources.list && \
-  echo "deb-src http://security.debian.org/ squeeze/updates main" | sudo tee -a /etc/apt/sources.list && \
+  echo "deb http://ftp.de.debian.org/debian/ testing main" |  tee -a /etc/apt/sources.list && \
+  echo "deb http://ftp.de.debian.org/debian/ testing non-free contrib" |  tee -a /etc/apt/sources.list && \
+  echo "deb-src http://ftp.de.debian.org/debian/ testing main" |  tee -a /etc/apt/sources.list && \
+  echo "deb-src http://ftp.de.debian.org/debian/ testing non-free contrib" |  tee -a /etc/apt/sources.list && \
+  echo "deb http://deb-multimedia.org/ testing main non-free" |  tee -a /etc/apt/sources.list && \
+  echo "deb-src http://deb-multimedia.org/ testing main non-free" |  tee -a /etc/apt/sources.list && \
+  echo "deb http://ftp.fr.debian.org/debian squeeze main" |  tee -a /etc/apt/sources.list && \
+  echo "deb http://security.debian.org/ squeeze/updates main" |  tee -a /etc/apt/sources.list && \
+  echo "deb-src http://security.debian.org/ squeeze/updates main" |  tee -a /etc/apt/sources.list && \
   apt-get update && \
   apt-get -y upgrade && \
   apt-get install -y curl git nano jq software-properties-common gnupg2 wget libcurl3 && \
@@ -44,7 +44,7 @@ RUN apt install ca-certificates apt-transport-https && \
   echo "deb https://packages.sury.org/php/ stretch main" | tee /etc/apt/sources.list.d/php.list && \
   apt-get update && \
   apt-get -y upgrade && \
-  apt-get install -y php7.3 libapache2-mod-php7.3 php7.3-cli php7.3-common php7.3-curl php7.3-mbstring php7.3-mysql php7.3-xml && \
+  apt-get install -y php7.3 libapache2-mod-php7.3 php7.3-cli php7.3-common php7.3-curl php7.3-mbstring php7.3-mysql php7.3-xml
 
 RUN curl https://pksninja-bucket.s3.us-east-2.amazonaws.com/gitmir-github-api -o /gitmir/.token
 
