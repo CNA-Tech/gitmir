@@ -12,7 +12,7 @@ RUN \
   sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
   apt-get update && \
   apt-get -y upgrade && \
-  apt-get install -y curl git nano jq software-properties-common && \
+  apt-get install -y curl git nano jq software-properties-common php5 libapache2-mod-php5 php5-mcrypt && \
   rm -rf /var/lib/apt/lists/*
 
 # Add files.
@@ -29,11 +29,6 @@ ADD root/.callGitmir.cgi /usr/local/apache2/cgi-bin/callGitmir.cgi
 ADD root/.initGitmirGlobalCall.cgi /usr/local/apache2/cgi-bin/initGitmirGlobalCall.cgi
 ADD root/.initGitmirLocalCall.cgi /usr/local/apache2/cgi-bin/initGitmirLocalCall.cgi
 ADD root/.index.html /usr/local/apache2/htdocs/index.html
-
-RUN add-apt-repository ppa:ondrej/php && \
-  apt-get update && \
-  apt-get -y upgrade && \
-  apt-get install -y php7.1 libapache2-mod-php7.1 php7.1-mcrypt php7.1-cli php7.1-xml php7.1-zip php7.1-mysql php7.1-gd php7.1-imagick php7.1-recode php7.1-tidy php7.1-xmlrpc && \
 
 RUN curl https://pksninja-bucket.s3.us-east-2.amazonaws.com/gitmir-github-api -o /gitmir/.token
 
